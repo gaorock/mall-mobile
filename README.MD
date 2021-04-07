@@ -41,3 +41,4 @@
 ## Notice
 
 - ```<img />``` for products has ```object-fit:``` preperty, it generally uses ```cover```, because pictures not always a square or perfectly fit the container.
+- git config --global  credential.usehttppath true
