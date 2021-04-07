@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="js/swiper-bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>个人中心</title>
+</head>
+<body>
+  <nav class="bottom-fixed-nav">
+    <div class="nav-main">
+      <a href="/home.html" class="nav-item">
+        <img src="/assets/icon/home.png" alt="home">
+        <li>首页</li>
+      </a>
+      <a href="/category.html" class="nav-item">
+        <img src="/assets/icon/cate.png" alt="home">
+        <li>分类</li>
+      </a>
+      <a href="/cart.html" class="nav-item">
+        <img src="/assets/icon/cart.png" alt="home">
+        <li>购物车</li>
+      </a>
+      <a href="#" class="nav-item active">
+        <img src="/assets/icon/my-active.png" alt="home">
+        <li>我的</li>
+      </a>
+    </div>
+    <div class="placeholder"></div>
+  </nav>
+  <main class="padding-main center page">
+    <section class="top-flex-line">
+      <h1>我的</h1>
+      <a class="message-group">
+        <div class="small-icon-message"><div class="message-number">2</div></div>
+        <span>消息</span>
+      </a>
+    </section>
+    <section class="personal-info-wrapper flex-center">
+      <div class="left-info flex-center flex-1">
+        <div class="avatar round-img" style="background-image: url('/assets/images/avatar.png');"></div>
+        <div class="info">
+          <div class="nickname flex-center">
+            <b>Serious</b>
+            <span>白金会员</span>
+            <small class="flex-center"><i class="contain-img"></i>较高</small>
+          </div>
+          <div class="contact flex-center"><i class="contain-img"></i>绑定手机：18*******22</div>
+        </div>
+      </div>
+      <a class="right-setup flex-center">
+        <img src="assets/icon/setup.png" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#999999" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </a>
+    </section>
+    <section class="order-section">
+      <div class="flex-center">
+        <h4 class="title flex-1">我的订单</h4>
+        <a class="flex-center">
+          <span>查看全部</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#999999" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </a>
+      </div>
+      <div class="flex-center order">
+        <a>
+          <img src="assets/icon/wallet.png" />
+          <div>待支付</div>
+        </a>
+        <a>
+          <img src="assets/icon/deliver.png" />
+          <div>待发货</div>
+        </a>
+        <a>
+          <img src="assets/icon/receive.png" />
+          <div>待收货</div>
+        </a>
+        <a>
+          <img src="assets/icon/evaluate.png" />
+          <div>待评价</div>
+        </a>
+        <a>
+          <img src="assets/icon/refund.png" />
+          <div>退款/退货</div>
+        </a>
+      </div>
+    </section>
+    <section class="display-section" id="banner">
+      <!-- <div class="swiper-wrapper">
+        <div class="box swiper-slide" style="background-image: url('/assets/images/product-3.png');"></div>
+        <div class="box swiper-slide" style="background-image: url('/assets/images/product-3.png');"></div>
+        <div class="box swiper-slide" style="background-image: url('/assets/images/product-3.png');"></div>
+        <div class="box swiper-slide" style="background-image: url('/assets/images/product-3.png');"></div>
+      </div> -->
+      <!-- replace with Swiper -->
+      <div class="cover-img" style="background-image: url('/assets/images/banner.png');"></div>
+    </section>
+    <section class="utils-section">
+      <h4 class="title">我的功能</h4>
+      <div class="flex-center utils">
+        <a>
+          <img src="assets/icon/favor.png" />
+          <div>我的收藏</div>
+        </a>
+        <a>
+          <img src="assets/icon/browse.png" />
+          <div>浏览记录</div>
+        </a>
+        <a>
+          <img src="assets/icon/location.png" />
+          <div>收货地址</div>
+        </a>
+        <a>
+          <img src="assets/icon/message.png" />
+          <div>站内消息</div>
+        </a>
+      </div>
+    </section>
+    <footer>
+      <p>河南麦秸映像网络技术有限公司</p>
+      <p>版权所有 Copyright © 2020-2025</p>
+      <p>备案号：豫ICP备17010554号-7</p>
+    </footer>
+    <div class="bottomholder"><div></div></div>
+  </main>
+  <script>
+    // const banner = new Swiper('#banner', {});
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>支付订单</title>
+</head>
+<body class="order-pay-page">
+  <a onClick="javascript:history.go(-1);" class="previous">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    支付订单
+  </a>
+
+  <main class="p-1">
+    <section>
+      <div class="status flex-center">
+        <img src="assets/icon/success.png" />
+        <h3>订单提交成功</h3>
+      </div>
+      <div class="products">
+        <li>
+          <img src="/assets/images/product-1.png" />
+          <div class="info">
+            <p>爱国者 A690 圈铁通话耳机黑 (单位:副)</p>
+            <p class="tags">黑色、4G</p>
+          </div>
+          <span>x1</span>
+        </li>
+        <li>
+          <img src="/assets/images/product-1.png" />
+          <div class="info">
+            <p>爱国者 A690 圈铁通话耳机黑 (单位:副)</p>
+            <p class="tags">黑色、4G</p>
+          </div>
+          <span>x1</span>
+        </li>
+        <li>
+          <img src="/assets/images/product-1.png" />
+          <div class="info">
+            <p>爱国者 A690 圈铁通话耳机黑 (单位:副)</p>
+            <p class="tags">黑色、4G</p>
+          </div>
+          <span>x1</span>
+        </li>
+      </div>
+      <div class="orderinfo">
+        <label>订单编号</label>
+        <p>2021032750575155</p>
+      </div>
+      <div class="address">
+        <label>收货地址</label>
+        <div>
+          <p>河南省新乡市红旗区高新技术创业园</p>
+          <p>郭光峰 18749198122</p>
+        </div>
+      </div>
+      <h4 class="price">应付金额<b>217.22</b>元</h4>
+    </section>
+    <section class="methods">
+      <p>支付方式</p>
+      <div id="weixin" class="selected">
+        <img src="assets/icon/weixin-pay.png" />
+        <p>微信支付</p>
+        <div class="contain-img icon"></div>
+      </div>
+      <div id="ali">
+        <img src="assets/icon/ali-pay.png" />
+        <p>支付宝支付</p>
+        <div class="contain-img icon"></div>
+      </div>
+    </section>
+    <button>立即支付</button>
+  </main>
+
+  <script>
+    const methods = ['微信', '支付宝'];
+    const weixin = document.querySelector('#weixin');
+    const ali = document.querySelector('#ali');
+    let selected = 0;
+
+    weixin.addEventListener('click', () => {
+      if (selected === 0) return;
+      weixin.classList.add('selected');
+      ali.classList.remove('selected');
+      selected = 0;
+    })
+
+    ali.addEventListener('click', () => {
+      if (selected === 1) return;
+      ali.classList.add('selected');
+      weixin.classList.remove('selected');
+      selected = 1;
+    })
+
+    const button = document.querySelector('button');
+
+    button.addEventListener('click', () => {
+      console.log('submit', methods[selected])
+    })
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>个人信息</title>
+</head>
+<body class="personal-info-page">
+  <a onClick="javascript:history.go(-1);" class="previous">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    个人信息
+  </a>
+
+  <main>
+    <form>
+      <div class="avatar flex-center">
+        <h4>头像</h4>
+        <label htmlFor="avatar" style="background-image: url('/assets/images/avatar.png');" id="avatar">
+          <input type="file" name="avatar" accept="image/*"/>
+          <div class="text">修改</div>
+        </label>
+      </div>
+      <div class="field">
+        <h5>真实姓名<span>*</span></h5>
+        <input type="text" placeholder="请输入真实姓名" autocomplete="off" name="username" />
+      </div>
+      <div class="field">
+        <h5>昵称<span>*</span></h5>
+        <input type="text" placeholder="请设置您的昵称" autocomplete="off" name="nickname" />
+      </div>
+      <div class="field">
+        <h5>生日<span>*</span></h5>
+        <input type="date" value="1990-06-01" autocomplete="off" min="1960-01-01" max="2020-01-01" required pattern="\d{4}-\d{2}-\d{2}" name="birthdate"/>
+      </div>
+      <div class="field">
+        <h5>电话<span>*</span></h5>
+        <input type="number" placeholder="请输入您的电话" autocomplete="off" name="phone"/>
+      </div>
+      <div class="field">
+        <h5>邮箱<span>*</span></h5>
+        <input type="email" placeholder="请输入您的邮箱" autocomplete="off" name="email" />
+      </div>
+      <button>保存</button>
+    </form>
+    
+  </main>
+  <script>
+
+    const form = document.querySelector('form');
+    const inputs = document.querySelectorAll('input');
+    const image = document.querySelector('input[name="avatar"]');
+    const avatar = document.querySelector('#avatar');
+
+    image.addEventListener('change', () => {
+      const file = image.files[0];
+      const uploadUrl = URL.createObjectURL(file);
+      avatar.style.backgroundImage = `url(${uploadUrl})`;
+    })
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      inputs.forEach(el => {
+        console.log({name: el.name, value: el.value})
+      })
+    })
+
+  </script>
+
+</body>
+</html>

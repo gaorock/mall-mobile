@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>写评价</title>
+</head>
+<body class="evaluate-page">
+  <a onClick="javascript:history.go(-1);" class="previous">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    写评价
+  </a>
+
+  <main class="padding-1">
+    <h5>商品信息</h5>
+    <ul>
+      <li>
+        <img src="/assets/images/product-1.png" />
+        <div class="flex-1">
+          <b>爱国者 A690 圈铁通话耳机黑 (单位:副)</b>
+          <p>黑色、4G</p>
+        </div>
+        <span>x1</span>
+      </li>
+      <li>
+        <img src="/assets/images/product-1.png" />
+        <div class="flex-1">
+          <b>爱国者 A690 圈铁通话耳机黑 (单位:副)</b>
+          <p>黑色、4G</p>
+        </div>
+        <span>x1</span>
+      </li>
+    </ul>
+    <div class="total">￥217.22</div>
+    <div class="evaluate">
+      <div class="star love"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+    </div>
+    <p class="evaluate-text">请对商品进行评分</p>
+    <h3>写评价</h3>
+    <textarea placeholder="写下您对该商品的评价吧~" maxlength="300"></textarea>
+    <div class="photos">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <label htmlFor="image">
+      <input type="file" accept="image/*" name="image" />
+      <div class="box">
+        <img src="/assets/icon/camara.png" />
+        <p>上传照片最多4张</p>
+      </div>
+    </label>
+    <button>评价</button>
+  </main>
+  <script>
+    /*  
+      evaluation UI control
+    */
+
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((el, idx) => {
+      el.addEventListener('click', fillout.bind(this, idx))
+    })
+
+    function fillout (idx) {
+      stars.forEach((el, index) => {
+        if (index <= idx) {
+          if (!el.classList.contains('love')) el.classList.add('love');
+        } else el.classList.remove('love');
+      })
+    }
+
+    /*
+      upload image UI control
+    */
+    const upload = document.querySelector('input[type=file]');
+    const wrapper = document.querySelector('.photos');
+    const photos = document.querySelectorAll('.photos div');
+    const label = document.querySelector('label');
+
+    let total = 0;
+
+    const {width} = photos[0].getBoundingClientRect();
+    label.style.width = width + 'px';
+    label.style.height = width + 'px';
+    wrapper.classList.add('hidden');
+
+    photos.forEach(el => {
+      el.addEventListener('click', e => {
+        if (!el.getAttribute('style')) return;
+        el.removeAttribute('style');
+        const oldNode = wrapper.removeChild(el);
+        total--;
+        if (total === 0 && !wrapper.classList.contains('hidden')) wrapper.classList.add('hidden');
+        wrapper.appendChild(oldNode);
+      })
+    })
+
+    upload.addEventListener('change', e => {
+      if (upload.files.length === 0) return;
+      // upload image here!
+
+      const img = URL.createObjectURL(upload.files[0]);
+      if (wrapper.classList.contains('hidden')) wrapper.classList.remove('hidden');
+      const newPhotos = document.querySelectorAll('.photos div');
+      for(let el of newPhotos) {
+        if (!el.getAttribute('style')) {
+          el.style.backgroundImage = `url(${img})`;
+          total++;
+          break;
+        }
+      }
+    })
+
+    /*
+      textarea UI control
+    */
+
+    const commit = document.querySelector('textarea');
+
+    /*
+      submit
+    */
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+      const totalStar = document.querySelectorAll('.love').length;
+      console.log({ total, totalStar, commit: commit.value })
+    })
+  </script>
+</body>
+</html>

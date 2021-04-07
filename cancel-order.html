@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>取消订单</title>
+</head>
+<body class="cancel-order-page">
+  <a onClick="javascript:history.go(-1);" class="previous">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    取消订单
+  </a>
+
+  <main>
+    <div class="main">
+      <div class="goods">
+        <h3>退款商品</h3>
+        <ul>
+          <li>
+            <img src="assets/images/product-1.png" />
+            <div class="info">
+              <p>爱国者 A690 圈铁通话耳机黑 (单位:副)</p>
+              <p>黑色、4G</p>
+            </div>
+          </li>
+          <li>
+            <img src="assets/images/product-1.png" />
+            <div class="info">
+              <p>爱国者 A690 圈铁通话耳机黑 (单位:副)</p>
+              <p>黑色、4G</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="refund">
+        <h3>退款信息</h3>
+        <div class="flex-center">
+          <span class="flex-1">退款原因<b class="red">*</b></span>
+          <div class="select">
+            <select>
+              <option value="">请选择</option>
+              <option value="原因1">原因1</option>
+              <option value="原因2">原因2</option>
+              <option value="原因3">原因3</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </div>
+        </div>
+        <div class="flex-center money">
+          <span class="flex-1">退款金额</span>
+          <p>￥217.22</p>
+        </div>
+        <p>若退款成功，将退还给您￥217.22现金</p>
+      </div>
+      <div class="desc">
+        <h3>退款描述</h3>
+        <textarea placeholder="补充描述，有助于商家更好的处理售后问题" maxlength="150"></textarea>
+        <div class="photos"></div>
+        <label htmlFor="image">
+          <input type="file" accept="image/*" name="image" />
+          <div class="box">
+            <img src="/assets/icon/camara.png" />
+            <p>上传照片最多4张</p>
+          </div>
+        </label>
+      </div>
+      <button>提交申请</button>
+    </div>
+  </main>
+  <script>
+    /*
+      upload image UI control
+    */
+    const upload = document.querySelector('input[type=file]');
+    const wrapper = document.querySelector('.photos');
+    for(let i = 0; i<4; i++) {
+      const div = document.createElement('div');
+      wrapper.appendChild(div);
+    }
+    const label = document.querySelector('label');
+
+    let total = 0;
+
+    for(let el of wrapper.children) {
+      el.addEventListener('click', e => {
+        if (!el.getAttribute('style')) return;
+        el.removeAttribute('style');
+        const oldNode = wrapper.removeChild(el);
+        total--;
+        if (total === 0 && !wrapper.classList.contains('hidden')) wrapper.classList.add('hidden');
+        wrapper.appendChild(oldNode);
+      })
+    }
+
+    const {width} = wrapper.children[0].getBoundingClientRect();
+    label.style.width = width + 'px';
+    label.style.height = width + 'px';
+    wrapper.classList.add('hidden');
+
+    upload.addEventListener('change', e => {
+      console.log('change')
+      if (upload.files.length === 0) return;
+      // upload image here!
+
+      const img = URL.createObjectURL(upload.files[0]);
+      if (wrapper.classList.contains('hidden')) wrapper.classList.remove('hidden');
+      const newPhotos = document.querySelectorAll('.photos div');
+      for(let el of newPhotos) {
+        if (!el.getAttribute('style')) {
+          el.style.backgroundImage = `url(${img})`;
+          total++;
+          break;
+        }
+      }
+    });
+
+    /*
+      textarea & select UI control
+    */
+
+    const select = document.querySelector('select');
+    const commit = document.querySelector('textarea');
+
+    /*
+      submit
+    */
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+      const reason = select.value;
+      const explain = commit.value;
+      if (!reason) return console.warn('请选择');
+      console.log({ total, select:reason, commit: explain })
+    })
+  </script>
+</body>
+</html>

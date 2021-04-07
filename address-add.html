@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
+  <title>新增收货地址</title>
+</head>
+<body class="address-add-page">
+  <div class="previous-alt">
+    <a onClick="javascript:history.go(-1);">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </a>
+    <p>新增收货地址</p>
+    <span class="clear">删除</span>
+  </div>
+
+  <main class="padding-1">
+    <form>
+      <div class="field">
+        <h3>联系人</h3>
+        <input type="text" placeholder="请输入联系人姓名" autocomplete="off" name="name" />
+        <div class="option right sex">
+          <span class="selected" data-idx="0">先生</span>
+          <span data-idx="1">女士</span>
+        </div>
+      </div>
+  
+      <div class="field">
+        <h3>联系电话</h3>
+        <input placeholder="请输入联系人电话" autocomplete="off" type="number" name="phone" />
+      </div>
+      <div class="field">
+        <h3>标签</h3>
+        <div class="option left tag">
+          <span class="selected" data-idx="0">家</span>
+          <span data-idx="1">公司</span>
+          <span data-idx="2">学校</span>
+          <span data-idx="3">其他</span>
+        </div>
+      </div>
+      <div class="field">
+        <h3>收货地址</h3>
+        <input placeholder="请选择所在地址" autocomplete="off" type="type" name="address_1" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </div>
+      <div class="field">
+        <h3>详细地址</h3>
+        <input placeholder="街道、小区、楼牌等" autocomplete="off" type="type" name="address_2" />
+      </div>
+      <button>保存地址</button>
+    </form>
+  </main>
+  <script>
+    const sexArr = ['先生', '女士'];
+    const tagArr = ['家', '公司', '学校', '其他']
+    let sex = 0, tag = 0;
+    const inputs = document.querySelectorAll('input');
+    const form = document.querySelector('form');
+    const option = {
+      sexOption: document.querySelectorAll('.sex span'),
+      tagOption: document.querySelectorAll('.tag span')
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      console.log({sex: sexArr[sex], tag: tagArr[tag]});
+      inputs.forEach(el => {
+        console.log({name: el.name, value: el.value})
+      })  
+    })
+
+    option.sexOption.forEach(el => el.addEventListener('click', onOptionClick.bind(this, 'sexOption')));
+    option.tagOption.forEach(el => el.addEventListener('click', onOptionClick.bind(this, 'tagOption')));
+    
+
+    function onOptionClick (text, e) {
+      const index = parseInt(e.currentTarget.dataset.idx);
+      if(text === 'sexOption') sex = index; else tag = index;
+      option[text].forEach((el, idx) => {
+        if (idx === index) {
+          if (!el.classList.contains('selected')) el.classList.add('selected');
+        } else {
+          el.classList.remove('selected');
+        }
+      })
+    }
+
+  </script>
+</body>
+</html>
